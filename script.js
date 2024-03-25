@@ -46,8 +46,9 @@ function nowTime() {
     'Ноябрь',
     'Декабрь',
   ];
-  let month;
+
   let monthesMassive = watch.getMonth();
+  let month = monthes[monthesMassive];
   // проверка месяца с помощью switch
   // switch (monthesMassive) {
   //   case 0:
@@ -87,32 +88,50 @@ function nowTime() {
   //     month = monthes[11];
   //     break;
   // }
+
+  //проверка месяца циклом for
+
+  // for (monthes = 0; monthes <= monthesMassive; monthes++) {
+  //   if (monthes == monthesMassive) {
+  //     console.log(monthes);
+  //   }
+  // }
+  // let month = () => {
+  //   for (month = 0; month <= monthesMassive; month++) {
+  //     if (month == monthesMassive) {
+  //       month = monthes[month];
+  //       console.log(month);
+  //     }
+  //   }
+  // };
+
+  // month();
   // проверка месяца if / else
-  if (monthesMassive == 0) {
-    month = monthes[0];
-  } else if (monthesMassive == 1) {
-    month = monthes[1];
-  } else if (monthesMassive == 2) {
-    month = monthes[2];
-  } else if (monthesMassive == 3) {
-    month = monthes[3];
-  } else if (monthesMassive == 4) {
-    month = monthes[4];
-  } else if (monthesMassive == 5) {
-    month = monthes[5];
-  } else if (monthesMassive == 6) {
-    month = monthes[6];
-  } else if (monthesMassive == 7) {
-    month = monthes[7];
-  } else if (monthesMassive == 8) {
-    month = monthes[8];
-  } else if (monthesMassive == 9) {
-    month = monthes[9];
-  } else if (monthesMassive == 10) {
-    month = monthes[10];
-  } else {
-    month = monthes[11];
-  }
+  // if (monthesMassive == 0) {
+  //   month = monthes[0];
+  // } else if (monthesMassive == 1) {
+  //   month = monthes[1];
+  // } else if (monthesMassive == 2) {
+  //   month = monthes[2];
+  // } else if (monthesMassive == 3) {
+  //   month = monthes[3];
+  // } else if (monthesMassive == 4) {
+  //   month = monthes[4];
+  // } else if (monthesMassive == 5) {
+  //   month = monthes[5];
+  // } else if (monthesMassive == 6) {
+  //   month = monthes[6];
+  // } else if (monthesMassive == 7) {
+  //   month = monthes[7];
+  // } else if (monthesMassive == 8) {
+  //   month = monthes[8];
+  // } else if (monthesMassive == 9) {
+  //   month = monthes[9];
+  // } else if (monthesMassive == 10) {
+  //   month = monthes[10];
+  // } else {
+  //   month = monthes[11];
+  // }
 
   let fullTime =
     day + '<br/>' + month + '<br/>' + ' ' + date + '<br/>' + hours + ':' + minutes + ':' + seconds;
