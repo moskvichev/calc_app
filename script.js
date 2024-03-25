@@ -89,22 +89,6 @@ function nowTime() {
   //     break;
   // }
 
-  //проверка месяца циклом for
-
-  // for (monthes = 0; monthes <= monthesMassive; monthes++) {
-  //   if (monthes == monthesMassive) {
-  //     console.log(monthes);
-  //   }
-  // }
-  // let month = () => {
-  //   for (month = 0; month <= monthesMassive; month++) {
-  //     if (month == monthesMassive) {
-  //       month = monthes[month];
-  //       console.log(month);
-  //     }
-  //   }
-  // };
-
   // month();
   // проверка месяца if / else
   // if (monthesMassive == 0) {
@@ -142,16 +126,16 @@ function nowTime() {
   setTimeout('nowTime()', 1000);
 }
 
-let a = '';
-let b = '';
+let a = ''; // первое число
+let b = ''; // второе число
 
-let sing = '';
-let finish = false;
+let sing = ''; // знак операции
+let finish = false; //
 
 const digit = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
 const action = ['-', '+', 'X', '/'];
 
-//экран
+// экран
 
 const out = document.querySelector('.calc-screen p');
 
@@ -160,19 +144,67 @@ function clearAll() {
   b = '';
   sing = '';
   finish = false;
-  out.textContent = 0;
+  out.textContent = '0';
 }
 
 document.querySelector('.ac').onclick = clearAll;
 
 document.querySelector('.buttons').onclick = (event) => {
-  if (!event.target.classList.contains('btn')) return;
-  if (event.target.classList.contains('ac')) return;
+  if (!event.target.classList.contains('btn')) return; // нажата не кнопка
+  if (event.target.classList.contains('ac')) return; // нажата АС
   out.textContent = '';
-  const key = event.target.textContent;
+  const key = event.target.textContent; // получаю нажатую кнопку
+  // если нажата кнопка 0-9 или .
   if (digit.includes(key)) {
-    a += key;
+    if (b === '' && sing === '') {
+      a += key;
+      out.textContent = a;
+    } else if (a !== '' && b !== '' && finish) {
+      b = key;
+      finish = false;
+      out.textContent = b;
+    } else {
+      b += key;
+      out.textContent = b;
+    }
     console.log(a, b, sing);
+    return;
+  }
+
+  // если нажата кнопка + - * /
+  if (action.includes(key)) {
+    sing = key;
+    out.textContent = sing;
+    return;
+  }
+
+  // нажата равно
+
+  if (key === '=') {
+    if (b === ' ') b = a;
+    switch (sing) {
+      case '+':
+        a = +a + +b;
+        break;
+      case '-':
+        a = a - b;
+        break;
+      case 'X':
+        a = a * b;
+        break;
+      case '/':
+        if (b === '0') {
+          out.textContent = 'error';
+          a = '';
+          b = '';
+          sing = '';
+          return;
+        }
+        a = a / b;
+        break;
+    }
+    finish = true;
     out.textContent = a;
+    console.table(a, b, sing);
   }
 };
