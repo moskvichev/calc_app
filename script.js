@@ -133,7 +133,7 @@ let sing = ''; // знак операции
 let finish = false; //
 
 const digit = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
-const action = ['-', '+', 'X', '/'];
+const action = ['-', '+', 'X', '/', '%', '+/-'];
 
 // экран
 
@@ -201,6 +201,12 @@ document.querySelector('.buttons').onclick = (event) => {
           return;
         }
         a = a / b;
+        break;
+      case '%':
+        a = a / 100;
+        break;
+      case '+/-':
+        a = -a;
         break;
     }
     finish = true;
